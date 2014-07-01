@@ -1,0 +1,44 @@
+diff --git a/lib/RT/Record.pm b/lib/RT/Record.pm
+index 29cff47..30b1774 100644
+--- a/lib/RT/Record.pm
++++ b/lib/RT/Record.pm
+@@ -1438,6 +1438,8 @@ sub _NewTransaction {
+         ActivateScrips => 1,
+         CommitScrips => 1,
+         SquelchMailTo => undef,
++        Created   => undef,
++        Creator   => undef,
+         @_
+     );
+ 
+@@ -1472,6 +1474,8 @@ sub _NewTransaction {
+         ActivateScrips => $args{'ActivateScrips'},
+         CommitScrips => $args{'CommitScrips'},
+         SquelchMailTo => $args{'SquelchMailTo'},
++        Created => $args{'Created'},
++        Creator => $args{'Creator'},
+     );
+ 
+     # Rationalize the object since we may have done things to it during the caching.
+diff --git a/lib/RT/Ticket.pm b/lib/RT/Ticket.pm
+index 3f2e94c..d243e23 100644
+--- a/lib/RT/Ticket.pm
++++ b/lib/RT/Ticket.pm
+@@ -3389,6 +3389,8 @@ sub _Set {
+                  UpdateTicket      => 1,
+                  CheckACL          => 1,
+                  TransactionType   => 'Set',
++                 Created           => undef,
++                 Creator           => undef,
+                  @_ );
+ 
+     if ($args{'CheckACL'}) {
+@@ -3428,6 +3430,8 @@ sub _Set {
+                                                NewValue  => $args{'Value'},
+                                                OldValue  => $Old,
+                                                TimeTaken => $args{'TimeTaken'},
++                                               Created   => $args{'Created'},
++                                               Creator   => $args{'Creator'},
+         );
+         return ( $Trans, scalar $TransObj->BriefDescription );
+     }
