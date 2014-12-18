@@ -3,7 +3,7 @@ use strict;
 
 package RT::Extension::ParentTimeWorked;
 
-our $VERSION = "1.01";
+our $VERSION = "1.02";
 
 1;
 __END__
